@@ -294,7 +294,7 @@ pre{font-family:'SF Mono',SFMono-Regular,Menlo,Monaco,monospace}
       <div class="exam-icon" style="background:rgba(77,156,255,.15)">🐧</div>
       <div class="exam-card-info">
         <div class="exam-card-title" style="color:var(--lpi)">LPI Linux Essentials</div>
-        <div class="exam-card-sub">Exam 010 v1.6 · 200 questions · 40 per exam</div>
+        <div class="exam-card-sub">Exam 010 v1.6 · 312 questions · 40 per exam</div>
       </div>
       <div class="exam-card-arrow">›</div>
     </div>
@@ -1530,7 +1530,581 @@ ans:1,exp:"Running 'mount' without arguments shows all currently mounted filesys
 q:"What does the 'ss -tp' command show?",
 opts:["UDP connections only","All TCP connections with the owning process name and PID","Summary statistics for all protocols","Network interface statistics"],
 ans:1,exp:"ss -tp shows TCP connections (-t) with process information (-p): the program name and PID owning each socket. This is essential for identifying which process is using a specific port. ss is the modern replacement for netstat."},
+,
+// ══════════════════════════════════════════════════════════
+// LPI LINUX ESSENTIALS — COMPREHENSIVE EXPANSION
+// ~150 new questions covering all book chapters in depth
+// Source: LPI Linux Essentials Study Guide, 3rd Ed.
+// Christine Bresnahan & Richard Blum — Exam 010 V1.6
+// ══════════════════════════════════════════════════════════
 
+// ── TOPIC 1: Linux Community & Open Source ──
+{id:201,topic:"Topic 1 · Linux Community",chapter:"Chapter 1",
+q:"Which of the following BEST describes what a Linux distribution provides beyond just the Linux kernel?",
+opts:["Only the kernel and bootloader","The kernel plus a collection of software, package management, and configuration tools assembled into a complete operating system","Just the GNU utilities","Only a graphical desktop environment"],
+ans:1,exp:"A Linux distribution bundles the kernel with GNU utilities, a package manager, libraries, configuration tools, and often a desktop environment into a complete, installable operating system. Examples include Ubuntu, Fedora, and Debian."},
+
+{id:202,topic:"Topic 1 · Open Source",chapter:"Chapter 1",
+q:"What does the GNU in 'GNU/Linux' stand for and who started the GNU project?",
+opts:["General Network Unix, started by Linus Torvalds","GNU's Not Unix, started by Richard Stallman in 1983 with the goal of creating a free Unix-like OS","Global Network Utilities, started by the Linux Foundation","GNU Network Unix, started by the Free Software Foundation in 1991"],
+ans:1,exp:"GNU stands for 'GNU's Not Unix' — a recursive acronym. Richard Stallman started the GNU Project in 1983 to create a free Unix-compatible OS. By the time Linus Torvalds created the Linux kernel in 1991, the GNU userland was nearly complete. Combined, they form GNU/Linux."},
+
+{id:203,topic:"Topic 1 · Open Source",chapter:"Chapter 1",
+q:"Which of the following is NOT one of the four freedoms defined by the Free Software Foundation?",
+opts:["Freedom to run the program for any purpose","Freedom to study and modify the source code","Freedom to charge money for distributing the software","Freedom to sell exclusive rights to the software"],
+ans:3,exp:"The four FSF freedoms are: 0) run for any purpose, 1) study and modify (requires source access), 2) redistribute copies, 3) distribute modified versions. Selling exclusive rights (a monopoly) contradicts the core principle of freedom to redistribute."},
+
+{id:204,topic:"Topic 1 · Open Source",chapter:"Chapter 1",
+q:"What is the key difference between the GPL and the BSD licence?",
+opts:["GPL is free; BSD requires payment","GPL requires derivative works to also be GPL (copyleft); BSD allows incorporating code into proprietary software without that requirement","BSD is more restrictive than GPL","GPL only applies to kernel code; BSD applies to applications"],
+ans:1,exp:"GPL is a 'copyleft' licence requiring derivatives to remain GPL. BSD (and MIT) are permissive licences — you can incorporate BSD-licensed code into proprietary products without releasing source code. This is why many commercial products use BSD-licensed components."},
+
+{id:205,topic:"Topic 1 · Linux Community",chapter:"Chapter 1",
+q:"What is the role of a Linux distribution's package manager?",
+opts:["Only to install software from the internet","To manage the installation, updating, removal, and dependency resolution of software packages","To compile source code into binaries","To manage user accounts and permissions"],
+ans:1,exp:"A package manager automates software lifecycle management: installing packages, resolving and installing dependencies, upgrading to newer versions, and cleanly removing software. This removes the need to manually manage software dependencies."},
+
+{id:206,topic:"Topic 1 · Distributions",chapter:"Chapter 2",
+q:"What is the difference between Ubuntu LTS and standard Ubuntu releases?",
+opts:["LTS versions are paid; standard are free","LTS (Long Term Support) releases receive security updates for 5 years; standard releases are supported for only 9 months","LTS versions have fewer features","Standard releases are more stable than LTS"],
+ans:1,exp:"Ubuntu LTS releases (like 22.04, 24.04) receive 5 years of security updates and are recommended for servers and stability-focused deployments. Standard releases like 23.10 are supported for only 9 months and are for users wanting newer features."},
+
+{id:207,topic:"Topic 1 · Distributions",chapter:"Chapter 2",
+q:"Which Linux distribution is known for being used on the majority of web servers worldwide?",
+opts:["Ubuntu Desktop","Kali Linux","Debian/Ubuntu and RHEL/CentOS family distributions","Arch Linux"],
+ans:2,exp:"Debian/Ubuntu and Red Hat Enterprise Linux (RHEL)/CentOS family distributions dominate web server deployments. Ubuntu Server and CentOS/RHEL are particularly common in enterprise environments due to their stability and long support cycles."},
+
+{id:208,topic:"Topic 1 · Linux Uses",chapter:"Chapter 2",
+q:"Why is Linux particularly dominant in the supercomputing field?",
+opts:["Linux supercomputers are cheaper to buy","Linux provides the stability, scalability, performance tuning capabilities, and open source flexibility needed for massively parallel computing workloads","Linux is the only OS that supports multiple CPUs","Supercomputers require GPUs which only Linux supports"],
+ans:1,exp:"Linux dominates supercomputing (consistently 100% of TOP500 supercomputers) because it can be customised at the kernel level for specific hardware, scaled to thousands of nodes, tuned for maximum performance, and modified without licence restrictions."},
+
+{id:209,topic:"Topic 1 · Open Source",chapter:"Chapter 1",
+q:"What is 'open source' software according to the Open Source Initiative (OSI)?",
+opts:["Software that is free of charge","Software whose source code is publicly available and can be inspected, modified, and redistributed under an OSI-approved licence","Software developed by volunteers only","Software without copy protection"],
+ans:1,exp:"OSI defines open source as software meeting 10 criteria including: free redistribution, source code availability, right to create derived works, no discrimination against persons or fields of use, and licence must not restrict other software."},
+
+{id:210,topic:"Topic 1 · Packages",chapter:"Chapter 2",
+q:"What is a software dependency in the context of package management?",
+opts:["A software bug that depends on specific hardware","Another package that must be installed for the requested package to function correctly","A configuration file required by a package","A paid licence required to use commercial software"],
+ans:1,exp:"A dependency is a package that another package requires to function. For example, a web browser may depend on SSL libraries. Package managers like apt and yum automatically resolve and install dependencies, preventing 'dependency hell'."},
+
+{id:211,topic:"Topic 1 · Packages",chapter:"Chapter 2",
+q:"What does 'apt-cache search keyword' do?",
+opts:["Searches installed packages only","Searches the local package database for packages matching keyword in their name or description","Downloads a package without installing it","Searches the internet for packages"],
+ans:1,exp:"apt-cache search queries the local package index (downloaded by apt update) for packages whose name or description contains the keyword. It helps discover package names when you know what functionality you need but not the exact package name."},
+
+{id:212,topic:"Topic 1 · Packages",chapter:"Chapter 2",
+q:"On a Red Hat based system, which command shows all files installed by a specific RPM package?",
+opts:["rpm -qi packagename","rpm -ql packagename","rpm -qa packagename","yum list packagename"],
+ans:1,exp:"rpm -ql (query list) shows all files installed by a specific package. rpm -qi shows package information/metadata. rpm -qa lists all installed packages. These are essential for auditing what a package installs on a system."},
+
+// ── TOPIC 2: Finding Your Way ──
+{id:213,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What is the Filesystem Hierarchy Standard (FHS) and why does it matter?",
+opts:["A Linux kernel standard for filesystem performance","A standard defining where files and directories should be located on Unix-like systems, ensuring consistency across distributions","A tool for checking filesystem integrity","A standard for network file sharing"],
+ans:1,exp:"The FHS defines the directory structure and directory contents in Unix-like systems. It specifies what goes in /bin, /etc, /var, /usr etc. This consistency means scripts and applications can find files in predictable locations regardless of which Linux distribution is used."},
+
+{id:214,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What is the difference between /bin and /usr/bin?",
+opts:["They are identical and interchangeable","Historically /bin held essential binaries needed before /usr was mounted (single-user mode); /usr/bin held non-essential user binaries. Modern systems often symlink them.","usr/bin is for root only; /bin is for all users","/bin contains scripts; /usr/bin contains compiled binaries"],
+ans:1,exp:"Historically /bin contained essential binaries needed in early boot and single-user mode (ls, cp, sh) while /usr/bin held additional user commands. Modern distributions (Fedora, Ubuntu) merge them with /bin as a symlink to /usr/bin, but the distinction still appears in older or minimal systems."},
+
+{id:215,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What type of filesystem is /proc?",
+opts:["An ext4 filesystem stored on disk","A virtual (pseudo) filesystem existing only in RAM, created by the kernel at boot and destroyed at shutdown","A network filesystem","A compressed read-only filesystem"],
+ans:1,exp:"/proc is a virtual filesystem (procfs) that exists only in memory. The kernel creates it at boot to expose information about running processes and kernel state as files. Reading /proc/1/status shows init's status; /proc/cpuinfo shows CPU details. Nothing in /proc is stored on disk."},
+
+{id:216,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"Which directory would you look in to find system-wide application configuration files?",
+opts:["/usr/share","/opt","/etc","/var/config"],
+ans:2,exp:"/etc is the conventional location for system-wide configuration files. Examples: /etc/fstab (mount points), /etc/passwd (user database), /etc/ssh/sshd_config (SSH server config), /etc/nginx/nginx.conf (nginx config). User-specific configs live in home directories (e.g. ~/.bashrc)."},
+
+{id:217,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What is the purpose of the /opt directory?",
+opts:["Optional kernel modules","Add-on application software packages that are not part of the default installation — typically commercial or third-party software","Temporary optional files","Optional user home directories"],
+ans:1,exp:"/opt is for optional, self-contained add-on software packages. Commercial software like Oracle or third-party tools that don't fit the standard FHS layout install here. Each package typically gets its own subdirectory like /opt/google/chrome."},
+
+{id:218,topic:"Topic 2 · Navigation",chapter:"Chapter 3",
+q:"What does 'ls -lt' display and how is it sorted?",
+opts:["Long listing sorted alphabetically","Long listing sorted by file size, largest first","Long listing sorted by modification time, newest first","Long listing sorted by file type"],
+ans:2,exp:"ls -lt combines -l (long format) with -t (sort by modification time). Files are listed newest first. Adding -r reverses to oldest first. This is useful for finding recently modified files: 'ls -lt /var/log' shows which logs were written to most recently."},
+
+{id:219,topic:"Topic 2 · Navigation",chapter:"Chapter 3",
+q:"What does 'ls -lR /etc/ | less' do?",
+opts:["Lists only the /etc directory","Recursively lists all files under /etc in long format, piped through less for paging","Removes files from /etc","Lists /etc sorted in reverse order"],
+ans:1,exp:"-R makes ls recurse into subdirectories, showing all files recursively. Piping to less allows paging through the potentially very long output. This is useful for exploring a directory tree without a graphical file manager."},
+
+{id:220,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What does the /usr directory contain?",
+opts:["User home directories","User System Resources: read-only sharable data including most installed programs (/usr/bin), libraries (/usr/lib), documentation (/usr/share/doc), and header files (/usr/include)","User configuration files","Temporary user files"],
+ans:1,exp:"/usr (Unix System Resources) contains the majority of user utilities and applications. It should be read-only and shareable across machines. /usr/bin has user commands, /usr/sbin has admin commands, /usr/lib has libraries, /usr/share has architecture-independent data."},
+
+{id:221,topic:"Topic 2 · Navigation",chapter:"Chapter 3",
+q:"How do you list only directories (not files) in the current directory using ls?",
+opts:["ls -d","ls --dirs","ls -d */","ls -type d"],
+ans:2,exp:"'ls -d */' lists only directories by using the glob pattern */ which matches only directories (trailing slash). 'ls -d' alone only lists the current directory itself. 'ls -F' appends / to directory names which helps visually identify them."},
+
+{id:222,topic:"Topic 2 · Links",chapter:"Chapter 6",
+q:"If you delete the original file that a symbolic link points to, what happens to the symlink?",
+opts:["The symlink is automatically deleted too","The symlink becomes a dangling (broken) link — it still exists but points to a non-existent target","The symlink takes ownership of the file data","The file data is preserved in the symlink"],
+ans:1,exp:"Deleting the target of a symlink leaves a 'dangling' or 'broken' symlink. The symlink file still exists but when you try to access it you get 'No such file or directory'. Use 'find /path -xtype l' to find broken symlinks."},
+
+{id:223,topic:"Topic 2 · Links",chapter:"Chapter 6",
+q:"What happens to the file data when you delete one of two hard links pointing to the same inode?",
+opts:["All hard links and data are deleted","The data is deleted but the other link remains","The data remains intact — it is only deleted when the last hard link to the inode is removed","The remaining link becomes a symbolic link"],
+ans:2,exp:"Hard links share an inode. The filesystem maintains a link count. Deleting one hard link decrements the count. The actual data blocks are only freed when the link count reaches zero (all hard links deleted and no processes have the file open)."},
+
+{id:224,topic:"Topic 2 · Help",chapter:"Chapter 3",
+q:"What is the difference between man pages and info pages?",
+opts:["They contain identical information in different formats","Man pages are concise reference documentation; info pages are GNU's hyperlinked documentation system with more detailed tutorials and cross-references","Info pages are older than man pages","Man pages only cover commands; info pages cover system calls"],
+ans:1,exp:"Man pages are the traditional Unix concise reference format — good for quick syntax lookup. GNU info pages (read with 'info command') provide more comprehensive documentation with hyperlinks between sections and more tutorial-style content. Many GNU tools have richer info pages than man pages."},
+
+{id:225,topic:"Topic 2 · Help",chapter:"Chapter 3",
+q:"What does 'command --help' typically show compared to 'man command'?",
+opts:["They show identical information","--help shows a brief usage summary built into the binary; man shows the full manual page from the man page database","--help shows more detail than man","man only works for built-in shell commands"],
+ans:1,exp:"Most commands implement --help to print a brief synopsis of options directly from the binary. It's faster but less detailed than the full man page. Man pages are separate documentation files (in /usr/share/man) and may include examples, descriptions of all options, and see-also references."},
+
+// ── TOPIC 3: Power of the Command Line ──
+{id:226,topic:"Topic 3 · Command Line",chapter:"Chapter 5",
+q:"What is the difference between single quotes and double quotes in bash?",
+opts:["No difference","Single quotes prevent ALL interpretation including variable expansion and backslash; double quotes allow variable ($VAR), command ($(cmd)) and backslash expansion but not glob expansion","Double quotes prevent all expansion","Single quotes are for commands; double quotes are for strings"],
+ans:1,exp:"Single quotes: every character is literal — even $ and \\ have no special meaning. Double quotes: variable expansion ($VAR), command substitution ($(cmd)), and backslash escapes work, but glob patterns (*, ?) are not expanded. Use single quotes for literal strings, double quotes when you need variable expansion."},
+
+{id:227,topic:"Topic 3 · Command Line",chapter:"Chapter 5",
+q:"What does 'echo $((5 * 3 + 2))' output?",
+opts:["$((5 * 3 + 2))","5 * 3 + 2","17","Error — bash cannot do arithmetic"],
+ans:2,exp:"$(( )) is bash's arithmetic expansion syntax. It evaluates integer arithmetic expressions. 5 * 3 = 15, + 2 = 17. Other operators: ** (power), / (integer division), % (modulo). For floating point arithmetic use bc or awk."},
+
+{id:228,topic:"Topic 3 · Command Line",chapter:"Chapter 5",
+q:"What does the 'tee' command do?",
+opts:["Displays the top of a file","Reads from stdin and writes simultaneously to stdout AND to a file — allowing you to see output while also saving it","Counts lines in a file","Splits a file into pieces"],
+ans:1,exp:"tee reads stdin and writes to both stdout and one or more files simultaneously. 'command | tee output.txt' lets you see the output on screen while also saving it. 'tee -a' appends rather than overwrites. Named after the T-pipe plumbing fitting."},
+
+{id:229,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'grep -v pattern file' do?",
+opts:["Searches for the pattern in verbose mode","Shows lines that do NOT match the pattern (inverted match)","Shows only the matched pattern, not the whole line","Counts how many lines match"],
+ans:1,exp:"grep -v (invert) shows lines that do NOT contain the pattern. Useful for filtering out noise: 'grep -v \"^#\" /etc/fstab' shows only non-comment lines. 'grep -c' counts matching lines, 'grep -o' shows only the matched text."},
+
+{id:230,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'sort -n' do differently from plain 'sort'?",
+opts:["Sorts in reverse order","Sorts numerically (by numeric value) rather than lexicographically (character by character)","Sorts by filename","Sorts case-insensitively"],
+ans:1,exp:"Plain sort sorts lexicographically: '10' comes before '9' because '1' < '9'. sort -n sorts numerically: 9 comes before 10 as expected. Always use -n when sorting numbers. 'sort -rn' sorts numerically in reverse (descending)."},
+
+{id:231,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What is the purpose of the 'tr' command?",
+opts:["Translates file formats between operating systems","Translates or deletes individual characters — replacing or removing specified character sets from input","Transfers files between hosts","Tracks changes in text files"],
+ans:1,exp:"tr (translate) replaces or deletes individual characters. 'echo hello | tr a-z A-Z' converts to uppercase. 'tr -d '\\r'' removes carriage returns from Windows text files. 'tr -s ' '' squeezes multiple spaces into one. It works character-by-character, not on patterns like sed."},
+
+{id:232,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'awk '{print $2}' file' do?",
+opts:["Prints the second file","Prints the second field (whitespace-delimited) of each line","Prints line number 2","Prints the second character of each line"],
+ans:1,exp:"awk splits each line into fields ($1, $2, etc.) by whitespace (or a specified delimiter with -F). '{print $2}' prints the second field. 'awk -F: '{print $1}' /etc/passwd' uses : as delimiter and prints usernames. $0 is the entire line, NR is the line number."},
+
+{id:233,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'cut -c1-5 file' do?",
+opts:["Cuts the first 5 files","Extracts characters 1 through 5 from each line","Cuts the file into 5 pieces","Removes the first 5 lines"],
+ans:1,exp:"cut -c specifies character positions. -c1-5 extracts characters 1 to 5 from each line. 'cut -d: -f1,3' uses delimiter : and extracts fields 1 and 3. Unlike awk, cut cannot handle variable-width delimiters."},
+
+{id:234,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'head -n -5 file' do (note the negative number)?",
+opts:["Shows the first 5 lines","Shows all lines EXCEPT the last 5 lines","Shows lines starting from line 5","Shows the last 5 lines"],
+ans:1,exp:"head -n -N shows all lines except the last N lines. This is the complement of tail -n +N (show from line N onwards). Together they allow slicing any portion of a file without knowing its total line count."},
+
+{id:235,topic:"Topic 3 · Text Processing",chapter:"Chapter 5",
+q:"What does 'paste file1 file2' do?",
+opts:["Appends file2 to the end of file1","Merges lines of file1 and file2 side by side, separated by a tab","Compares file1 and file2","Duplicates lines from file1 into file2"],
+ans:1,exp:"paste merges lines from multiple files horizontally (side by side) separated by tabs by default. 'paste -d, file1 file2' uses comma as delimiter. Useful for combining columns from separate files. The opposite of cut."},
+
+{id:236,topic:"Topic 3 · Finding Files",chapter:"Chapter 5",
+q:"Which command finds all files owned by a specific user?",
+opts:["find / -owner username","find / -user username","find / -name username","find / -uid username"],
+ans:1,exp:"find -user username finds all files owned by that user. -uid N finds by user ID number. Combined with other criteria: 'find /home -user james -name \"*.log\"' finds james's log files. -group and -gid do the equivalent for groups."},
+
+{id:237,topic:"Topic 3 · Finding Files",chapter:"Chapter 5",
+q:"What does 'find . -type f -name \"*.sh\" -executable' find?",
+opts:["All .sh files regardless of permissions","All regular files with .sh extension that have execute permission set","All shell scripts in the system","All executable files in the current directory"],
+ans:1,exp:"-type f restricts to regular files (not directories or symlinks), -name '*.sh' matches the name pattern, and -executable matches files the current user can execute (has execute permission). Combining find predicates with AND logic is very powerful for precise file searches."},
+
+{id:238,topic:"Topic 3 · Archives",chapter:"Chapter 7",
+q:"What does 'tar -czf - /home/user/ | ssh user@remote dd of=/backup/home.tar.gz' do?",
+opts:["Creates a local backup only","Creates a compressed tar archive on stdout and pipes it directly over SSH to a remote machine — a streaming backup without creating a local file","Copies files using SSH","Creates an encrypted backup"],
+ans:1,exp:"Using - as the filename makes tar write to stdout instead of a file. This stdout is piped over SSH to the remote machine where dd writes it to a file. This streams the backup directly to the remote host without needing intermediate local storage — a common technique for large backups."},
+
+{id:239,topic:"Topic 3 · Archives",chapter:"Chapter 7",
+q:"What compression does 'tar -cJf archive.tar.xz dir/' use?",
+opts:["gzip","bzip2","xz (LZMA2)","zip"],
+ans:2,exp:"The -J flag pipes through xz (LZMA2 compression). -z uses gzip (.tar.gz), -j uses bzip2 (.tar.bz2), -J uses xz (.tar.xz). xz provides the best compression ratio but is slowest. gzip is fastest. bzip2 is a middle ground. xz is preferred for distribution archives."},
+
+{id:240,topic:"Topic 3 · Text Editors",chapter:"Chapter 5",
+q:"In vim, what is the difference between Normal mode, Insert mode, and Command mode?",
+opts:["They are different names for the same mode","Normal mode navigates and operates on text; Insert mode types text; Command mode (after pressing :) runs editor commands like save and quit","Insert mode is for reading; Normal mode is for writing","Command mode is only available in vi, not vim"],
+ans:1,exp:"vim is modal: Normal mode (default) — keyboard keys are commands (dd=delete line, yy=copy, p=paste); Insert mode (press i, a, o) — typing inserts text; Command mode (press :) — runs commands like :w (save), :q (quit), :wq (save+quit), :s/old/new/g (substitute), :%d (delete all). Press Esc to return to Normal."},
+
+{id:241,topic:"Topic 3 · Text Editors",chapter:"Chapter 5",
+q:"In vim, how do you search for a pattern and navigate between matches?",
+opts:["Ctrl+F like most editors","Press / then type the pattern and Enter to search forward; press n for next match, N for previous match","Use the Find menu","grep is used instead of searching in vim"],
+ans:1,exp:"In vim Normal mode: /pattern searches forward, ?pattern searches backward. Press Enter to confirm, then n jumps to next match, N to previous. This is case-sensitive by default. Add \\c to pattern for case-insensitive: /pattern\\c. :noh clears the search highlight."},
+
+{id:242,topic:"Topic 3 · Text Editors",chapter:"Chapter 5",
+q:"What does 'nano -w file' do?",
+opts:["Opens file in wide mode","Opens file with word wrap disabled — useful for configuration files where long lines must not be wrapped","Opens in write-only mode","Opens with syntax highlighting for web files"],
+ans:1,exp:"nano -w disables automatic line wrapping. This is important when editing configuration files where lines must stay intact — wrapping a long line could break the configuration. Many admins use 'nano -w /etc/fstab' or 'nano -w /etc/hosts' to be safe."},
+
+{id:243,topic:"Topic 3 · Command Line",chapter:"Chapter 3",
+q:"What keyboard shortcut moves the cursor to the beginning of the command line in bash?",
+opts:["Home key only","Ctrl+A","Ctrl+B","Alt+Left"],
+ans:1,exp:"Ctrl+A moves to the beginning of the line (like Home). Ctrl+E moves to the end. Ctrl+U deletes from cursor to beginning. Ctrl+K deletes from cursor to end. Ctrl+W deletes the previous word. These are Readline shortcuts and work in most Linux command-line tools."},
+
+{id:244,topic:"Topic 3 · Command Line",chapter:"Chapter 3",
+q:"What does pressing Tab twice do when there are multiple possible completions?",
+opts:["Selects the first completion","Shows all possible completions for the partial command or filename you have typed","Runs the command","Moves to the next command in history"],
+ans:1,exp:"Pressing Tab once completes if there is only one possibility. Pressing Tab twice when there are multiple options shows all possible completions. This works for commands, file paths, variable names, and (with bash-completion installed) command options and arguments."},
+
+{id:245,topic:"Topic 3 · Command Line",chapter:"Chapter 5",
+q:"What does 'command1 || command2' do?",
+opts:["Runs both commands simultaneously","Runs command2 only if command1 FAILS (non-zero exit status)","Runs command2 only if command1 succeeds","Redirects output of command1 to command2"],
+ans:1,exp:"|| is the OR operator: command2 runs only if command1 returns a non-zero (failure) exit status. 'mkdir /tmp/dir || echo \"failed\"' prints 'failed' if mkdir fails. Contrast with && which runs command2 only on success."},
+
+{id:246,topic:"Topic 3 · Command Line",chapter:"Chapter 5",
+q:"What is a here document (heredoc) in bash?",
+opts:["Documentation embedded in a script","A way to provide multi-line input to a command inline in a script using << DELIMITER ... DELIMITER syntax","A reference to the current working directory","A type of input redirection from a file"],
+ans:1,exp:"A heredoc provides multi-line input to a command: 'cat << EOF\\nline1\\nline2\\nEOF'. The text between the delimiters is passed as stdin. Useful in scripts for creating files or sending multi-line input without needing a separate file. <<- strips leading tabs."},
+
+{id:247,topic:"Topic 3 · Pipelines",chapter:"Chapter 5",
+q:"What does 'ps aux | grep nginx | grep -v grep' do and why is the second grep needed?",
+opts:["Lists all nginx processes; the second grep is redundant","Lists processes matching nginx from ps output; the second grep removes the grep command itself which also matches 'nginx' in its argument list","Kills all nginx processes","Shows nginx configuration"],
+ans:1,exp:"'ps aux | grep nginx' shows nginx processes BUT also shows the grep process itself (because 'nginx' appears in grep's command line). 'grep -v grep' removes lines containing 'grep', filtering out that false match. A cleaner alternative is 'pgrep nginx' or 'grep [n]ginx'."},
+
+// ── TOPIC 4: The Linux Operating System ──
+{id:248,topic:"Topic 4 · Hardware",chapter:"Chapter 8",
+q:"What does the file /proc/meminfo show?",
+opts:["A list of installed memory modules","Detailed memory usage statistics including total RAM, free memory, buffers, cached memory, swap usage and more","The physical location of RAM slots","Memory error logs"],
+ans:1,exp:"/proc/meminfo shows detailed kernel memory statistics: MemTotal (total RAM), MemFree (completely unused), MemAvailable (available for new processes including reclaimable cache), Buffers, Cached, SwapTotal, SwapFree, and many more fields. 'free' command reads from here."},
+
+{id:249,topic:"Topic 4 · Hardware",chapter:"Chapter 8",
+q:"What is the purpose of swap space in Linux?",
+opts:["A backup location for important files","Virtual memory on disk used when RAM is full — the kernel moves less-used memory pages to swap to free RAM for active processes","A temporary filesystem for package installation","Cache storage for the package manager"],
+ans:1,exp:"Swap extends available memory by using disk space. When RAM fills, the kernel swaps inactive pages to disk (swap partition or swapfile). This prevents out-of-memory crashes but disk is much slower than RAM so heavy swapping ('thrashing') severely degrades performance."},
+
+{id:250,topic:"Topic 4 · Hardware",chapter:"Chapter 8",
+q:"Which command shows which kernel modules are currently loaded?",
+opts:["modinfo","modprobe","lsmod","insmod"],
+ans:2,exp:"lsmod (list modules) shows currently loaded kernel modules, their size, and how many other modules use them. modprobe loads/unloads modules. insmod is the low-level module inserter. modinfo shows information about a specific module file."},
+
+{id:251,topic:"Topic 4 · Hardware",chapter:"Chapter 8",
+q:"What is a kernel module?",
+opts:["A section of the Linux kernel documentation","A piece of code that can be loaded into the kernel at runtime to add functionality (device drivers, filesystems) without requiring a kernel recompile or reboot","A separate Linux kernel for testing","A container for kernel configuration"],
+ans:1,exp:"Kernel modules (loadable kernel modules, LKMs) allow the kernel to be extended without recompiling or rebooting. Device drivers, filesystem support, and network protocols are commonly implemented as modules. They're stored in /lib/modules/$(uname -r)/."},
+
+{id:252,topic:"Topic 4 · Boot Process",chapter:"Chapter 8",
+q:"What is the purpose of the GRUB configuration file and where is it located?",
+opts:["It stores user passwords for boot authentication","/boot/grub/grub.cfg defines boot menu entries, kernel parameters, and default OS to boot — generated automatically by grub-mkconfig or update-grub","It configures network settings at boot","/etc/grub.conf stores BIOS settings"],
+ans:1,exp:"/boot/grub/grub.cfg is auto-generated — don't edit it directly. Edit /etc/default/grub for settings (default entry, timeout, kernel parameters) then run 'update-grub' or 'grub-mkconfig -o /boot/grub/grub.cfg' to regenerate it."},
+
+{id:253,topic:"Topic 4 · Boot Process",chapter:"Chapter 8",
+q:"What kernel parameter would you add to the GRUB boot line to boot into single-user (rescue) mode?",
+opts:["boot=single","init=/bin/bash or single","kernel=rescue","root=single"],
+ans:1,exp:"Adding 'single' or '1' to the kernel command line in GRUB boots into single-user mode (runlevel 1 or systemd rescue.target) with minimal services, typically used for system recovery. 'init=/bin/bash' bypasses init entirely and drops directly to a bash shell."},
+
+{id:254,topic:"Topic 4 · Boot Process",chapter:"Chapter 8",
+q:"What does systemd's 'default.target' determine?",
+opts:["The default text editor","Which target (equivalent to runlevel) the system boots into by default — typically multi-user.target or graphical.target","The default shell for all users","The default network interface"],
+ans:1,exp:"systemd boots to the target linked as default.target. Typically this is graphical.target (full desktop, equivalent to runlevel 5) or multi-user.target (multi-user, no GUI, equivalent to runlevel 3). Change with 'systemctl set-default target.target'."},
+
+{id:255,topic:"Topic 4 · Boot Process",chapter:"Chapter 8",
+q:"What is the difference between 'systemctl isolate rescue.target' and 'systemctl reboot'?",
+opts:["They do the same thing","isolate rescue.target switches immediately to rescue mode without rebooting; reboot performs a full system restart","isolate is for shutdown; reboot is for restart","rescue.target is safer than rebooting"],
+ans:1,exp:"'systemctl isolate target' switches the running system to a different target without rebooting. Isolating rescue.target stops most services and drops to a root shell for maintenance. 'systemctl reboot' performs a full system reboot. 'systemctl poweroff' shuts down."},
+
+{id:256,topic:"Topic 4 · Processes",chapter:"Chapter 9",
+q:"What does the RSS column in 'ps aux' represent?",
+opts:["Random Sample Size","Resident Set Size — the actual physical RAM the process is currently using (not including swap)","Remote Server Sessions","Read-only Shared Segments"],
+ans:1,exp:"RSS (Resident Set Size) is the amount of physical RAM actually occupied by a process. VSZ (Virtual Size) is the total virtual address space including memory-mapped files and swap. RSS is more meaningful for understanding actual memory pressure."},
+
+{id:257,topic:"Topic 4 · Processes",chapter:"Chapter 9",
+q:"What is a zombie process?",
+opts:["A process that has been paused","A process that has finished executing but whose entry remains in the process table because its parent hasn't read its exit status yet","A process running without a terminal","A process using 100% CPU"],
+ans:1,exp:"A zombie is a completed process that hasn't been 'waited for' by its parent. The process is dead but its PID and exit status remain in the process table until the parent calls wait(). Short-lived zombies are normal; persistent ones indicate a bug in the parent process. They consume no CPU or memory (just a PID)."},
+
+{id:258,topic:"Topic 4 · Processes",chapter:"Chapter 9",
+q:"What does 'nohup command &' do?",
+opts:["Runs a command with no output","Runs a command immune to the SIGHUP signal sent when a terminal closes, redirects output to nohup.out, and runs it in the background — useful for long-running jobs over SSH","Stops a process from receiving any signals","Runs a command as a system daemon"],
+ans:1,exp:"nohup (no hangup) prevents the process from being killed when the terminal closes (SIGHUP). Combined with & (background), it lets you run long jobs over SSH that survive after you disconnect. Output goes to nohup.out. 'screen' and 'tmux' are more powerful alternatives."},
+
+{id:259,topic:"Topic 4 · Processes",chapter:"Chapter 9",
+q:"What information does 'top' show in its header lines (above the process list)?",
+opts:["Only CPU usage","System uptime, load averages, number of tasks and their states, CPU usage breakdown (user/system/idle), and memory/swap usage summary","Only memory usage","Only the top 5 processes by CPU"],
+ans:1,exp:"top's header shows: uptime and load averages; task counts (running/sleeping/stopped/zombie); CPU time breakdown (%us user, %sy system, %ni nice, %id idle, %wa I/O wait, %hi hardware interrupts, %si software interrupts); physical memory (total/free/used/buffers); swap (total/free/used/available)."},
+
+{id:260,topic:"Topic 4 · Processes",chapter:"Chapter 9",
+q:"What does 'renice -n 5 -p PID' do?",
+opts:["Restarts the process with a new name","Changes the nice value of a running process to 5, reducing its CPU scheduling priority","Kills and restarts the process","Changes the process's memory priority"],
+ans:1,exp:"renice changes the scheduling priority of a running process. Positive nice values (1-19) reduce priority; negative values (-1 to -20) increase priority (requires root). 'renice -n 5 -p 1234' makes process 1234 more polite to other processes. The original nice command sets priority at launch."},
+
+{id:261,topic:"Topic 4 · Scheduling",chapter:"Chapter 9",
+q:"What is the cron daemon and where does it store system-wide cron jobs?",
+opts:["A manual task scheduler stored in /home","An automated job scheduler that runs tasks at specified times. System-wide jobs are stored in /etc/crontab and files in /etc/cron.d/ and /etc/cron.{hourly,daily,weekly,monthly}/","A real-time process monitor","A systemd timer replacement"],
+ans:1,exp:"cron is the classic Unix job scheduler. /etc/crontab is the system crontab (has an extra 'user' field). /etc/cron.d/ contains package-installed jobs. Scripts dropped in /etc/cron.hourly/ etc. run at those intervals. User crontabs are in /var/spool/cron/. 'crontab -l' lists your jobs."},
+
+{id:262,topic:"Topic 4 · Scheduling",chapter:"Chapter 9",
+q:"In a crontab entry, what do the five time fields represent in order?",
+opts:["Year Month Day Hour Minute","Minute Hour Day-of-Month Month Day-of-Week","Hour Minute Day Month Year","Day Hour Minute Month Week"],
+ans:1,exp:"Crontab format: Minute(0-59) Hour(0-23) Day(1-31) Month(1-12) Weekday(0-7, 0 and 7=Sunday). Use * for 'any', */n for 'every n', comma for lists, hyphen for ranges. '30 2 * * 1-5 /backup.sh' runs backup.sh at 2:30am Monday through Friday."},
+
+{id:263,topic:"Topic 4 · Scheduling",chapter:"Chapter 9",
+q:"What is a systemd timer and how does it compare to cron?",
+opts:["A replacement for the date command","A systemd unit file (.timer) that activates a corresponding .service file at specified times — more integrated with systemd logging, dependency management and accurate missed-job handling than cron","A hardware timer interface","A way to delay system shutdown"],
+ans:1,exp:"systemd timers (.timer units) are the modern alternative to cron. Advantages: missed runs can be caught up with AccuracySec, events logged to the journal, can depend on other services, can be triggered by calendar time or elapsed time (OnBootSec, OnUnitActiveSec). 'systemctl list-timers' shows all active timers."},
+
+{id:264,topic:"Topic 4 · Disk Management",chapter:"Chapter 10",
+q:"What is the difference between a partition and a filesystem?",
+opts:["They are the same thing","A partition is a fixed division of a physical disk (raw storage); a filesystem is the structure (ext4, xfs, etc.) created within a partition that organises files and directories","Partitions are for Linux; filesystems are for Windows","A filesystem is larger than a partition"],
+ans:1,exp:"A partition divides a physical disk into fixed regions (tracked in MBR or GPT). A filesystem is the organisational structure written into a partition that tracks file names, permissions, locations, and metadata. You create a filesystem with mkfs: 'mkfs.ext4 /dev/sda1'. A disk can have multiple partitions each with their own filesystem."},
+
+{id:265,topic:"Topic 4 · Disk Management",chapter:"Chapter 10",
+q:"What is the purpose of 'fsck /dev/sda1'?",
+opts:["Shows filesystem statistics","Filesystem check — scans and repairs filesystem errors. Must be run on unmounted filesystems to avoid further corruption","Formats the filesystem","Shows which files are open on the filesystem"],
+ans:1,exp:"fsck (filesystem check) scans a filesystem for errors and optionally repairs them. It should only be run on unmounted filesystems (never on a mounted root filesystem while running normally). On boot, the system automatically runs fsck if the filesystem was not cleanly unmounted (check count or max mount count exceeded)."},
+
+{id:266,topic:"Topic 4 · Disk Management",chapter:"Chapter 10",
+q:"What does 'blkid' show?",
+opts:["The current block I/O statistics","The UUID, filesystem type, and label of each block device — useful for identifying devices persistently without relying on /dev/sd* names which can change","The block size of filesystems","The number of free blocks on each filesystem"],
+ans:1,exp:"blkid shows attributes of block devices: UUID (unique persistent identifier), TYPE (filesystem type like ext4, xfs, swap), and LABEL if set. UUIDs are used in /etc/fstab instead of device names like /dev/sda1 which can change if you add/remove drives."},
+
+{id:267,topic:"Topic 4 · Disk Management",chapter:"Chapter 10",
+q:"What is LVM (Logical Volume Manager) and what problem does it solve?",
+opts:["A tool for listing volumes","LVM adds a layer of abstraction above physical partitions allowing logical volumes to be resized, moved, and snapshotted without the rigid boundaries of physical partitions","A filesystem type similar to ext4","A network storage protocol"],
+ans:1,exp:"LVM allows flexible disk management: physical volumes (PVs) from one or more disks are combined into volume groups (VGs), which are divided into logical volumes (LVs) that can be resized without downtime (with compatible filesystems), span multiple disks, and be snapshotted for backups."},
+
+{id:268,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What is the difference between a private IP address and a public IP address?",
+opts:["Private IPs are faster than public IPs","Private IP addresses (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) are used within internal networks and not routable on the internet; public IPs are globally routable and assigned by ISPs","Private IPs are IPv6; public IPs are IPv4","Private IPs require authentication to use"],
+ans:1,exp:"RFC 1918 defines three private ranges that can be freely used internally but are blocked from internet routing: 10.0.0.0/8, 172.16.0.0-172.31.255.255, 192.168.0.0/16. NAT (Network Address Translation) allows multiple private-IP hosts to share one public IP for internet access."},
+
+{id:269,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What does 'ip route add default via 192.168.1.1' do?",
+opts:["Adds a static route to a specific network","Sets 192.168.1.1 as the default gateway — all traffic with no more specific route is sent to this router for forwarding","Blocks traffic to 192.168.1.1","Changes the IP address of the system"],
+ans:1,exp:"A default route (0.0.0.0/0) is a catch-all route — packets with no more specific matching route are sent to the default gateway. Typically set to your router's LAN IP. Without a default route the system can only communicate with directly connected networks."},
+
+{id:270,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What does the 'dig' command do?",
+opts:["Digs files out of archives","Queries DNS servers and displays detailed results including the full DNS response, query time, and which server answered — more detailed than nslookup","Monitors disk I/O","Scans for open network ports"],
+ans:1,exp:"dig (Domain Information Groper) performs detailed DNS lookups. 'dig example.com' shows A records. 'dig MX example.com' shows mail records. 'dig @8.8.8.8 example.com' queries a specific DNS server. 'dig +short example.com' shows just the IP. Much more informative than ping for DNS troubleshooting."},
+
+{id:271,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What is the purpose of /etc/nsswitch.conf?",
+opts:["Configures network switch settings","Defines the order and sources for name service lookups — specifying whether to check files (/etc/hosts), DNS, LDAP etc. for hostname, user, and group lookups","Configures firewall rules","Sets the system's hostname"],
+ans:1,exp:"/etc/nsswitch.conf (Name Service Switch) controls which databases (files, dns, ldap, nis) are consulted for various lookups and in what order. The 'hosts' line (typically 'files dns') means check /etc/hosts first, then DNS. The 'passwd' line controls user account lookups."},
+
+{id:272,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What does 'curl -o file.html https://example.com' do?",
+opts:["Opens a web browser","Downloads the content of the URL and saves it to file.html","Uploads file.html to the URL","Checks if the URL is accessible"],
+ans:1,exp:"curl transfers data to/from URLs. -o saves output to a file (-O uses the remote filename). curl supports HTTP, HTTPS, FTP, SFTP and many other protocols. It's widely used in scripts for downloading files, testing APIs, and checking web services. wget is an alternative focused on web downloading."},
+
+{id:273,topic:"Topic 4 · Logging",chapter:"Chapter 8",
+q:"What is the rsyslog or syslog daemon responsible for?",
+opts:["Managing system resources","Collecting, filtering, and routing system log messages from the kernel and applications to log files, remote servers, or other destinations","Running scheduled log rotation","Monitoring log files for security issues"],
+ans:1,exp:"rsyslog (and the older syslogd) is the traditional Unix logging daemon. Applications and the kernel send log messages to it via /dev/log socket or syslog() system call. rsyslog routes messages based on facility (kern, mail, auth, daemon) and severity (emerg, alert, crit, err, warning, notice, info, debug) to configured destinations."},
+
+{id:274,topic:"Topic 4 · Logging",chapter:"Chapter 8",
+q:"What does 'logrotate' do and why is it necessary?",
+opts:["Rotates the screen display for accessibility","Automatically compresses, renames, and removes old log files on a schedule to prevent log files from consuming all available disk space","Sorts log entries chronologically","Encrypts log files for security"],
+ans:1,exp:"logrotate manages log file rotation: compressing old logs (gzip), renaming them (syslog.1.gz), keeping a defined number of old logs, and deleting logs older than a set period. Without rotation, busy systems accumulate gigabytes of logs. Config is in /etc/logrotate.conf and /etc/logrotate.d/."},
+
+{id:275,topic:"Topic 4 · System Info",chapter:"Chapter 8",
+q:"What does 'hostnamectl' do on a systemd system?",
+opts:["Lists all hostnames on the network","Shows and sets the system hostname — distinguishing static hostname (permanent), transient hostname (set by DHCP), and pretty hostname (human-readable display name)","Configures DNS hostname resolution","Shows connected hosts"],
+ans:1,exp:"hostnamectl is the systemd tool for hostname management. 'hostnamectl' shows current hostname info. 'hostnamectl set-hostname newhostname' sets it persistently (writes to /etc/hostname). The static hostname persists across reboots; the transient hostname can be set by DHCP and overrides it temporarily."},
+
+{id:276,topic:"Topic 4 · System Info",chapter:"Chapter 8",
+q:"What does 'timedatectl' manage?",
+opts:["Time-based access control lists","System time, date, timezone and time synchronisation settings — including enabling/disabling NTP synchronisation","CPU clock speed","Timer interrupts"],
+ans:1,exp:"timedatectl manages: current time/date display, timezone setting ('timedatectl set-timezone America/New_York'), NTP synchronisation enable/disable, and shows whether the hardware clock is synchronised. It replaces the older date, hwclock, and timezone commands in systemd systems."},
+
+// ── TOPIC 5: Security & File Permissions ──
+{id:277,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What does 'chmod 4755 file' do?",
+opts:["Sets permissions to rwxr-xr-x with no special bits","Sets the SUID bit plus rwxr-xr-x permissions — the file runs with the owner's privileges regardless of who executes it","Sets permissions to 4755 octal which is invalid","Sets read permission for all 4 user categories"],
+ans:1,exp:"The leading 4 in 4755 sets the SUID (Set User ID) bit. 755 = rwxr-xr-x. Result: -rwsr-xr-x. When executed, the process runs with the file owner's UID rather than the executing user's. Example: /usr/bin/passwd is 4755 root, so users can change their own passwords (updating /etc/shadow which only root can write)."},
+
+{id:278,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"How do you find all SUID files on a system?",
+opts:["ls -l / | grep s","find / -perm -4000 -type f","find / -suid -type f","locate suid"],
+ans:1,exp:"find -perm -4000 finds files where the SUID bit (4000) is set. -perm -4000 means 'at least these bits are set' (others can be anything). This is an important security audit command — unexpected SUID files can be privilege escalation vectors. SGID files: find / -perm -2000."},
+
+{id:279,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What do the permissions 'rwxrwxrwt' on /tmp indicate?",
+opts:["World-writable directory with execute disabled","World-writable directory with the sticky bit set — everyone can write files, but users can only delete their own files (not others')","All users have full control","The directory is encrypted"],
+ans:1,exp:"The 't' at the end (or T if execute is not also set) indicates the sticky bit. On /tmp (permissions typically 1777 = rwxrwxrwt), all users can create files but can only delete their own files. Without the sticky bit, any user with write permission could delete anyone's files in the directory."},
+
+{id:280,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What is an Access Control List (ACL) and how does it extend standard Unix permissions?",
+opts:["A firewall rule set","ACLs extend the traditional owner/group/other model by allowing specific per-user and per-group permissions on files — set with setfacl and viewed with getfacl","A list of blocked users","A kernel security module"],
+ans:1,exp:"Standard Unix permissions only allow three permission sets (owner, group, others). ACLs allow fine-grained permissions: 'setfacl -m u:alice:rx file' grants alice specific rx permissions regardless of the group. 'setfacl -m g:devteam:rw file' grants a group. 'getfacl file' shows all ACL entries. An '+' in ls output indicates ACLs are set."},
+
+{id:281,topic:"Topic 5 · Users",chapter:"Chapter 13",
+q:"What is the difference between 'su -' and 'su' (without the dash)?",
+opts:["They are identical","su - starts a new login shell as the target user, loading their environment variables, PATH, and running their profile scripts; su without - switches user but keeps the current environment","su - requires a password; su does not","su only works for root; su - works for any user"],
+ans:1,exp:"'su -' (or 'su -l' or 'su --login') simulates a full login as the target user: loads their .profile, .bashrc, sets HOME, PATH, and other environment variables. Plain 'su' switches effective user but retains the current environment. 'su - username' or 'su -' (default root) is recommended to avoid environment pollution issues."},
+
+{id:282,topic:"Topic 5 · Users",chapter:"Chapter 13",
+q:"How does sudo differ from running as root directly?",
+opts:["sudo is slower than running as root","sudo allows specific users to run specific commands as root (or other users) with logging, without giving them the root password, and with fine-grained control via /etc/sudoers","sudo is less secure than logging in as root","sudo only works for one command at a time"],
+ans:1,exp:"sudo provides: no need to share the root password (users authenticate with their own password), detailed logging of what commands were run and by whom, fine-grained control (user X can only run /usr/bin/apt, not all commands), session timeout, and can run as any user not just root. Much more auditable than shared root access."},
+
+{id:283,topic:"Topic 5 · Users",chapter:"Chapter 13",
+q:"What does 'chage -l username' show?",
+opts:["The user's login history","Password ageing information: last password change, password expiry, account expiry, days before/after expiry that warnings are sent","The user's group memberships","The user's scheduled cron jobs"],
+ans:1,exp:"chage (change age) manages password ageing. 'chage -l username' lists: last password change, password expires, password inactive, account expires, min/max days between changes, warning period. 'chage -E 2025-12-31 username' sets account expiry. Used for enforcing password rotation policies."},
+
+{id:284,topic:"Topic 5 · Users",chapter:"Chapter 13",
+q:"What is the /etc/skel directory used for?",
+opts:["A skeleton filesystem for recovery","A template directory whose contents are copied to every new user's home directory when the account is created with useradd -m","Storage for deleted user accounts","A backup of /etc/passwd"],
+ans:1,exp:"/etc/skel (skeleton) contains files that are copied to a new user's home directory when created with useradd -m. Default contents include .bashrc, .bash_profile, .profile. Add files here to give all new users standard configurations, bookmarks, or startup scripts automatically."},
+
+{id:285,topic:"Topic 5 · Groups",chapter:"Chapter 13",
+q:"What is the difference between a user's primary group and supplementary groups?",
+opts:["There is no functional difference","The primary group (GID in /etc/passwd) is assigned to files created by the user; supplementary groups grant additional access without changing file ownership","Primary groups require a password; supplementary don't","Supplementary groups are temporary; primary groups are permanent"],
+ans:1,exp:"The primary group (set in /etc/passwd) is the default group for new files created by the user. Supplementary groups (listed in /etc/group) give the user additional group memberships for access control without affecting file ownership. 'id username' shows all group memberships. Changes to supplementary groups take effect on next login."},
+
+{id:286,topic:"Topic 5 · Groups",chapter:"Chapter 13",
+q:"What does 'newgrp groupname' do?",
+opts:["Creates a new group","Starts a new shell session where the specified group becomes the user's active primary group — new files created in this session will be owned by that group","Renames a group","Adds a new member to a group"],
+ans:1,exp:"newgrp changes the active primary group for the current session by starting a new shell. Files created in this new shell will be owned by groupname instead of the user's default primary group. Exit the shell to return to the original primary group. Useful when working on shared group projects."},
+
+{id:287,topic:"Topic 5 · SSH",chapter:"Chapter 14",
+q:"What is the purpose of SSH key-based authentication and why is it more secure than password authentication?",
+opts:["Key authentication is less secure but more convenient","SSH keys use asymmetric cryptography — the private key never leaves your machine and the server only stores the public key. No password is transmitted, eliminating risks from brute force, password guessing, and credential interception","Key authentication only works on Linux systems","Keys are less secure because they can be copied"],
+ans:1,exp:"With key auth, the client proves identity by signing a challenge with the private key (which never leaves the client). The server verifies with the stored public key. No password is sent — immune to network sniffing, brute force attacks on passwords, and credential stuffing. With a passphrase-protected key, even key theft is mitigated."},
+
+{id:288,topic:"Topic 5 · SSH",chapter:"Chapter 14",
+q:"What does 'ssh-copy-id user@host' do?",
+opts:["Copies files between hosts securely","Copies your public SSH key to the remote host's ~/.ssh/authorized_keys file, enabling passwordless key-based authentication","Creates a new SSH key pair","Copies the SSH configuration to a remote host"],
+ans:1,exp:"ssh-copy-id automates the process of setting up key-based authentication: it reads your public key (~/.ssh/id_rsa.pub by default) and appends it to ~/.ssh/authorized_keys on the remote host (creating the file and directory with correct permissions if needed). After running it, you can SSH without a password."},
+
+{id:289,topic:"Topic 5 · SSH",chapter:"Chapter 14",
+q:"What does 'ssh -L 8080:localhost:80 user@remote' do?",
+opts:["Opens an SSH connection on port 8080","Creates a local port forward — connections to localhost:8080 on your machine are tunnelled through SSH to port 80 on the remote machine, allowing secure access to remote services","Limits SSH connections to port 80","Forwards all traffic from port 8080 to 80"],
+ans:1,exp:"SSH local port forwarding (-L local_port:remote_host:remote_port) tunnels connections through SSH. 'ssh -L 8080:localhost:80 user@server' means: listening on your local port 8080, connections are forwarded through the SSH tunnel to port 80 on 'server'. Useful for securely accessing web interfaces, databases, and other services behind firewalls."},
+
+{id:290,topic:"Topic 5 · Encryption",chapter:"Chapter 14",
+q:"What is the purpose of GPG (GNU Privacy Guard) and what operations does it support?",
+opts:["A graphics processing library","GPG implements OpenPGP for encrypting files/emails, creating digital signatures to verify authenticity, and managing public/private key pairs","A graphical password manager","A filesystem encryption tool"],
+ans:1,exp:"GPG provides: encryption (gpg -e file encrypts for a recipient), decryption (gpg -d file.gpg), signing (gpg --sign file creates a signature), verification (gpg --verify), and key management (gpg --gen-key, --list-keys, --import, --export). Used for securing email, verifying downloads (package signatures), and securing sensitive files."},
+
+{id:291,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What does 'lsattr file' show and how does it differ from 'ls -l'?",
+opts:["Lists attributes from an attribute database","Shows extended filesystem attributes (chattr attributes) like immutable flag, append-only, no-dump etc. that are not visible in standard ls -l permissions","Shows the same information as ls -l in a different format","Lists ACL attributes"],
+ans:1,exp:"lsattr shows ext2/3/4 filesystem attributes set with chattr. For example, 'chattr +i file' makes a file immutable — even root cannot delete or modify it until the attribute is removed. 'lsattr file' would show '----i--------e-- file'. Other attributes: +a (append-only), +d (no dump). These are beyond standard Unix permissions."},
+
+{id:292,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What does the octal permission 644 mean in symbolic notation and who can do what?",
+opts:["rwxrwxrwx — everyone has full access","rw-r--r-- — owner can read and write; group and others can only read","rwxr--r-- — owner has full access; others can read","rw-rw-rw- — everyone can read and write"],
+ans:1,exp:"644 = 6(owner)+4(group)+4(others). 6=rw(4+2), 4=r(4). So rw-r--r--. Owner: read and write. Group: read only. Others: read only. This is the standard permission for most text files and configuration files — readable by anyone but only modifiable by the owner."},
+
+{id:293,topic:"Topic 5 · Permissions",chapter:"Chapter 12",
+q:"What does 'chmod -R 755 /var/www/html' do?",
+opts:["Sets permissions only on /var/www/html directory itself","Recursively sets permissions 755 (rwxr-xr-x) on /var/www/html and all files and directories within it","Changes the owner recursively","Sets permissions 755 on the parent directory"],
+ans:1,exp:"The -R (recursive) flag applies the permission change to the directory and all its contents. However, applying 755 to all files gives execute to all regular files which is usually wrong — files should be 644, directories 755. The find command is better: 'find /var/www -type d -exec chmod 755 {} \\; -o -type f -exec chmod 644 {} \\;'"},
+
+// ── SHELL & SCRIPTING ──
+{id:294,topic:"Shell · Scripts",chapter:"Chapter 5",
+q:"What does 'if [ -f filename ]; then' test in a bash script?",
+opts:["If the filename variable is defined","If filename exists and is a regular file (not a directory, symlink, or device)","If the file is writable","If the file is empty"],
+ans:1,exp:"[ -f filename ] tests if a file exists and is a regular file. Other tests: -d (directory), -e (exists, any type), -r (readable), -w (writable), -x (executable), -s (non-empty), -L (symbolic link). 'if [ -d /backup ]; then mkdir -p /backup; fi' creates the directory only if it doesn't exist."},
+
+{id:295,topic:"Shell · Scripts",chapter:"Chapter 5",
+q:"What does 'for file in *.txt; do echo $file; done' do?",
+opts:["Loops through all files in the system","Iterates over all .txt files in the current directory, assigning each filename to $file and echoing it","Creates .txt files","Loops forever until a .txt file is found"],
+ans:1,exp:"The for loop iterates over items in a list. The glob *.txt expands to all matching filenames before the loop runs. If no .txt files exist, the shell may pass the literal string '*.txt' (unless nullglob is set). This pattern is fundamental for batch file processing in scripts."},
+
+{id:296,topic:"Shell · Scripts",chapter:"Chapter 5",
+q:"What does 'while read line; do echo $line; done < file.txt' do?",
+opts:["Writes lines to a file infinitely","Reads file.txt line by line into $line and echoes each line — the standard way to process a file line by line in bash","Only reads the first line","Reads from keyboard input"],
+ans:1,exp:"'while read line' reads from stdin one line at a time until EOF. Redirecting < file.txt provides the file as stdin. This is the correct way to process files line by line in bash — faster and more reliable than using cat and a for loop which breaks on spaces in filenames."},
+
+{id:297,topic:"Shell · Scripts",chapter:"Chapter 5",
+q:"What is the purpose of 'set -e' at the top of a bash script?",
+opts:["Enables debug mode","Causes the script to exit immediately if any command exits with a non-zero status, preventing the script from continuing after an error","Sets the editor for the script","Enables strict variable checking"],
+ans:1,exp:"'set -e' (or 'set -o errexit') makes the script exit on first error rather than continuing with potentially inconsistent state. Combined with 'set -u' (exit on undefined variable) and 'set -o pipefail' (exit if any pipeline command fails), these form the recommended error handling trio for robust scripts."},
+
+{id:298,topic:"Shell · Scripts",chapter:"Chapter 5",
+q:"What does 'echo \"The answer is: ${result:-unknown}\"' do when $result is empty?",
+opts:["Throws an error because result is empty","Prints 'The answer is: unknown' — the :- operator provides a default value when the variable is unset or empty","Prints 'The answer is: ${result:-unknown}' literally","Assigns 'unknown' to result"],
+ans:1,exp:"${var:-default} is bash parameter expansion that substitutes 'default' if var is unset or empty. ${var:=default} also assigns the default to var. ${var:?message} exits with an error message if unset. ${var:+value} uses value if var IS set. These prevent errors from empty variables."},
+
+{id:299,topic:"Shell · Variables",chapter:"Chapter 5",
+q:"What is the difference between $@ and $* in bash?",
+opts:["They are identical","When quoted, \"$@\" expands to separate words for each argument (preserving spaces within arguments); \"$*\" expands to a single word with all arguments joined by IFS. Unquoted, they behave the same.","$@ is for arrays; $* is for strings","$* passes arguments to functions; $@ passes to commands"],
+ans:1,exp:"The difference matters when arguments contain spaces. \"$@\" expands as \"arg1\" \"arg2\" \"arg3\" (separate words, spaces preserved). \"$*\" expands as \"arg1 arg2 arg3\" (one word). In a for loop: 'for arg in \"$@\"' correctly handles filenames with spaces. 'for arg in \"$*\"' would treat all args as one."},
+
+{id:300,topic:"Shell · Redirection",chapter:"Chapter 5",
+q:"What does 'command > /dev/null 2>&1' do and when is it used?",
+opts:["Sends output to the null device on network","Discards all output (both stdout and stderr) by redirecting stdout to /dev/null (bit bucket) and stderr to wherever stdout goes. Used when output is completely unwanted.","Saves output to a file called null","Redirects output to the terminal"],
+ans:1,exp:"/dev/null discards everything written to it. '> /dev/null' discards stdout. '2>&1' redirects fd2 (stderr) to fd1 (stdout), which is now /dev/null. So both stdout and stderr are silently discarded. Common in cron jobs to prevent email on every run: '0 2 * * * /backup.sh > /dev/null 2>&1'"},
+
+{id:301,topic:"Shell · Redirection",chapter:"Chapter 5",
+q:"What is a named pipe (FIFO) and how does it differ from a regular pipe (|)?",
+opts:["Named pipes are faster than regular pipes","A named pipe is a special file (created with mkfifo) that persists in the filesystem, allowing unrelated processes to communicate. Regular pipes only work between related processes in a single command line.","Named pipes have names only; they function identically","Regular pipes are stored on disk; named pipes are in memory"],
+ans:1,exp:"Regular pipes | are anonymous and exist only for the lifetime of the command line. Named pipes (FIFOs, created with mkfifo) appear as files in the filesystem — one process writes to the file, another reads from it. This allows inter-process communication between processes not related by a parent-child relationship."},
+
+{id:302,topic:"Shell · Environment Variables",chapter:"Chapter 5",
+q:"What is the PS1 variable and how can you customise it?",
+opts:["The primary network interface","The bash primary prompt string — defines what your command prompt looks like. Can include username (\\u), hostname (\\h), working directory (\\w), time (\\t), and colour escape codes.","The first positional parameter","The process scheduler priority"],
+ans:1,exp:"PS1 defines the bash prompt. 'export PS1=\"\\u@\\h:\\w$ \"' gives 'user@hostname:/current/dir$ '. Special characters: \\u (username), \\h (hostname), \\H (full hostname), \\w (CWD), \\W (basename of CWD), \\d (date), \\t (time), \\$ ($ for users, # for root), \\n (newline). Add to ~/.bashrc for persistence."},
+
+{id:303,topic:"Shell · Aliases",chapter:"Chapter 5",
+q:"How do you temporarily bypass an alias and run the original command?",
+opts:["You cannot bypass an alias","Prefix the command with backslash: \\command, or use the full path, or use 'command commandname'","Delete the alias first","Use alias=off before the command"],
+ans:1,exp:"Three ways to bypass an alias: 1) Backslash prefix: '\\ls' runs real ls, not the alias. 2) Full path: '/bin/ls' bypasses the alias. 3) 'command ls' explicitly runs the external command. Useful when an alias interferes: if you have 'alias rm=\"rm -i\"', '\\rm file' skips the -i confirmation."},
+
+{id:304,topic:"Shell · Jobs",chapter:"Chapter 9",
+q:"What does 'disown %1' do?",
+opts:["Deletes job 1","Removes job 1 from the shell's job table so it won't receive SIGHUP when the shell exits — similar to nohup but for already-running jobs","Pauses job 1","Transfers job 1 to another terminal"],
+ans:1,exp:"disown removes a job from the shell's job list. When a shell exits it sends SIGHUP to its child processes. By disowning a job, it escapes this — it keeps running after you close the terminal. 'disown -h %1' keeps it in the job list but marks it to not receive SIGHUP."},
+
+{id:305,topic:"Shell · History",chapter:"Chapter 3",
+q:"What does '!!' do in bash?",
+opts:["Shows the last command","Repeats (re-executes) the last command — equivalent to pressing Up then Enter","Shows command history","Runs the last command with sudo"],
+ans:1,exp:"!! is a history expansion event: it expands to the previous command text and executes it. 'sudo !!' re-runs the last command with sudo — useful when you forget sudo. '!string' runs the most recent command starting with 'string'. '!n' runs history entry n. HISTSIZE controls how many commands are remembered."},
+
+// ── ADDITIONAL TOPIC 4 NETWORKING ──
+{id:306,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What does 'netstat -rn' show?",
+opts:["All network connections","The kernel routing table with numeric addresses (no DNS resolution) — showing destination networks, gateways, and interfaces","All listening ports","Network interface statistics"],
+ans:1,exp:"netstat -r shows the routing table (like 'route' or 'ip route'). -n shows numeric IP addresses instead of resolving hostnames (much faster). The routing table shows: destination, gateway, netmask, flags, interface. The default route appears as 0.0.0.0 with the gateway IP."},
+
+{id:307,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What is the purpose of NetworkManager and how do you check its status?",
+opts:["A manual network configuration tool","A daemon that manages network connections dynamically, handling wired, wireless, VPN, and mobile broadband. Status: 'systemctl status NetworkManager' or 'nmcli general status'","A firewall management tool","A network performance monitor"],
+ans:1,exp:"NetworkManager (NM) manages network configuration dynamically — connecting to WiFi, handling DHCP, managing VPNs. 'nmcli device status' shows all interfaces. 'nmcli connection show' lists saved connections. 'nmcli device connect eth0' connects an interface. On servers, systemd-networkd is often preferred over NetworkManager."},
+
+{id:308,topic:"Topic 4 · Networking",chapter:"Chapter 11",
+q:"What does 'ss -s' show?",
+opts:["A summary of SSH sessions","Statistics summary of all socket types: total sockets, TCP states (established, closed, orphaned, synrecv, timewait), UDP, raw, fragment","A list of all listening servers","SSL/TLS certificate status"],
+ans:1,exp:"ss -s shows a concise summary of socket statistics by protocol and state. Useful for a quick health check: high numbers of TIME-WAIT sockets may indicate connection churn; many CLOSE-WAIT could indicate application bugs not closing sockets; high SYN-RECV could indicate a SYN flood attack."},
+
+// ── ADDITIONAL TOPIC 2 ──
+{id:309,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What is the difference between absolute and relative paths?",
+opts:["Absolute paths are shorter than relative paths","An absolute path starts from the root directory (/) and is unambiguous from anywhere in the filesystem; a relative path is interpreted from the current working directory","Absolute paths only work for system files","Relative paths start with ./"],
+ans:1,exp:"Absolute: /home/james/file.txt — same meaning regardless of where you are. Relative: documents/file.txt — interpreted from the current directory. Relative paths can start with ../ (parent), ./ (current dir, optional), or just a name. Use absolute paths in scripts for reliability; relative paths for interactive use."},
+
+{id:310,topic:"Topic 2 · Navigation",chapter:"Chapter 3",
+q:"What does 'mkdir -p /tmp/a/b/c' do?",
+opts:["Creates only /tmp/a","Creates /tmp/a/b/c and all intermediate directories that don't exist yet, without error if they already exist","Fails if /tmp/a already exists","Creates the directories in reverse order"],
+ans:1,exp:"-p (parents) creates the full directory path, creating each intermediate directory as needed. Without -p, mkdir fails if the parent doesn't exist. With -p, it also doesn't fail if the directory already exists. Essential in scripts: 'mkdir -p /var/log/myapp' won't fail if /var/log/myapp already exists."},
+
+{id:311,topic:"Topic 2 · File System",chapter:"Chapter 4",
+q:"What does the 'file' command do?",
+opts:["Lists files in a directory","Determines a file's type by examining its contents (magic bytes), not its extension — can identify text files, executables, images, compressed files, scripts etc.","Shows file permissions","Edits a file"],
+ans:1,exp:"'file filename' reads a file's first bytes and magic database to determine type: 'ELF 64-bit LSB executable', 'ASCII text', 'PNG image data', 'gzip compressed data', 'POSIX shell script'. Unlike Windows, Linux files don't need correct extensions. 'file *' shows types of all files in current directory."},
+
+{id:312,topic:"Topic 2 · Navigation",chapter:"Chapter 3",
+q:"What does 'stat filename' show?",
+opts:["Statistical analysis of file contents","Detailed inode information: file size, blocks allocated, inode number, permissions in octal AND symbolic, link count, owner UID/GID, and three timestamps: Access (atime), Modify (mtime), Change (ctime)","Only the file size","Network statistics for a file"],
+ans:1,exp:"stat shows everything stored in the inode: size, inode number, hard link count, permissions (in octal and symbolic), owner/group, and three timestamps: atime (last read), mtime (last content modification), ctime (last metadata change — permissions, owner, rename). Very useful for debugging permission and timestamp issues."},
 ];
 
 const LPI_FC = [
@@ -2767,7 +3341,7 @@ const EXAMS = {
     accentRaw: '#4d9cff',
     icon: '🐧',
     qCount: 40,
-    poolSize: 200,
+    poolSize: 312,
     passThreshold: 0.625,
     passScore: 500,
     maxScore: 800,
